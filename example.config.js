@@ -12,6 +12,6 @@ module.exports = {
     },
     limits: {
         'browser.desktop.*.js.br': 180000,
-        'browser.mobile.*.js.br': 160000,
+        'browser.mobile.*.js.br': 140000,
     },
 };

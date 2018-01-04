@@ -1,7 +1,7 @@
 {
   "name": "buundly",
   "version": "1.0.0",
-  "description": "Gets the sizes of your JS/CSS bundles.",
+  "description": "Keep an eye on your bundle size.",
   "main": "src/index.js",
   "repository": "https://github.com/SectorLabs/buundly",
   "author": "Swen Kooij <swen@sectorlabs.ro>",
