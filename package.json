@@ -1,0 +1,20 @@
+{
+  "name": "buundly",
+  "version": "1.0.0",
+  "description": "Gets the sizes of your JS/CSS bundles.",
+  "main": "src/index.js",
+  "repository": "https://github.com/SectorLabs/buundly",
+  "author": "Swen Kooij <swen@sectorlabs.ro>",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier --config .prettier.js.json --write '**/*.js'"
+  },
+  "dependencies": {
+    "cli-table": "^0.3.1",
+    "commander": "^2.12.2",
+    "filesize": "^3.5.11",
+    "lodash": "^4.17.4",
+    "minimatch": "^3.0.4",
+    "prettier": "^1.9.2"
+  }
+}
