@@ -28,6 +28,9 @@ module.exports = {
 };
 ```
 
+## Enforcing limits
+By specifying a dictionary of file name patterns and maximum file sizes in bytes in the configuration file, you can instruct Buundly to verify that files are not larger than the configured limit. If configured, Buundly will log which files exceed the limit and by how much. The exit code of the process will be 1 (failure) if a file crosses the limit.
+
 ## Usage
 By default, Buundly looks for a file named `.buundly.config.js` in the current directory. You can override this with the `-c` flag:
 
