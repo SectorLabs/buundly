@@ -6,6 +6,9 @@
   "repository": "https://github.com/SectorLabs/buundly",
   "author": "Swen Kooij <swen@sectorlabs.ro>",
   "license": "MIT",
+  "bin": {
+      "buundly": "src/index.js"
+  },
   "scripts": {
     "format": "prettier --config .prettier.js.json --write '**/*.js'"
   },

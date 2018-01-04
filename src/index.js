@@ -1,4 +1,4 @@
-#!/usr/local/bin/node
+#!/usr/bin/env node
 
 const commander = require('commander');
 const Table = require('cli-table');
@@ -9,15 +9,18 @@ const collectFiles = require('./collectFiles');
 commander
     .version('1.0')
     .usage('<directory> [options]')
-    .description('Lists sizes of bundles in a directory and enforces limits.')
     .arguments('<directory>')
     .option('-a, --all', 'Shows all collected files, including non-mapped ones')
+    .description('Lists sizes of bundles in a directory and enforces limits.')
     .parse(process.argv);
+
+if (!commander.args[0]) {
+    commander.outputHelp();
+    process.exit(1);
+}
 
 const config = require('../config.js');
 const files = collectFiles(config, commander.args[0]);
-
-console.log(commander);
 
 const table = new Table({
     head: ['Name', 'Size'],
