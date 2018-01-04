@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const path = require('path');
+
 const commander = require('commander');
 const Table = require('cli-table');
 const filesize = require('filesize');
@@ -10,6 +12,7 @@ commander
     .version('1.0')
     .usage('<directory> [options]')
     .arguments('<directory>')
+    .option('-c, --config <configFilePath>', 'Path to the configuration file.')
     .option('-a, --all', 'Shows all collected files, including non-mapped ones')
     .description('Lists sizes of bundles in a directory and enforces limits.')
     .parse(process.argv);
@@ -19,7 +22,17 @@ if (!commander.args[0]) {
     process.exit(1);
 }
 
-const config = require('../config.js');
+const configFileName = commander.config || './.buundle.config.js';
+const configFilePath = path.resolve(configFileName);
+
+let config = null;
+try {
+    config = require(configFilePath);
+} catch (error) {
+    console.error(`Could not find config file '${configFileName}'.`);
+    process.exit(1);
+}
+
 const files = collectFiles(config, commander.args[0]);
 
 const table = new Table({
