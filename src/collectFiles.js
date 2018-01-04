@@ -4,6 +4,15 @@ const path = require('path');
 const _ = require('lodash');
 const minimatch = require('minimatch');
 
+/**
+ * Attempts to get the mapped name for a file name.
+ *
+ * Name mappings are specified in the configuration,
+ * mapping a file name to a more readable name.
+ *
+ * @returns The mapped name for the specified file
+ * name or null if there was no mapped name.
+ */
 const getMappedName = (mappings, fileName) =>
     Object.keys(mappings)
         .map(
@@ -12,6 +21,16 @@ const getMappedName = (mappings, fileName) =>
         )
         .filter(name => !!name)[0] || null;
 
+/**
+ * Collects all bundle files in the specified directory.
+ *
+ * For each file, it collects:
+ *
+ * - The mapped name.
+ * - Raw size in bytes.
+ *
+ * @returns An array of objects.
+ */
 const collectFiles = (config, directory) => {
     const files = fs
         .readdirSync(directory)
