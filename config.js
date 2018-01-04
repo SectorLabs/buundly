@@ -7,9 +7,11 @@ module.exports = {
         'browser.mobile.*.js.br': 'JS / Mobile / Brotli',
         'browser.desktop.*.js.gz': 'JS / Desktop / GZip',
         'browser.mobile.*.js.gz': 'JS / Mobile / GZip',
+        'browser.desktop.*.css': 'CSS / Desktop',
+        'browser.mobile.*.css': 'CSS / Mobile',
     },
     limits: {
-        'browser.desktop.*.js.br': 0,
-        'browser.mobile.*.js.br': 0,
+        'browser.desktop.*.js.br': 180000,
+        'browser.mobile.*.js.br': 160000,
     },
 };

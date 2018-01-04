@@ -36,15 +36,35 @@ try {
 const files = collectFiles(config, commander.args[0]);
 
 const table = new Table({
-    head: ['Name', 'Size'],
-    colWidths: [30, 20],
+    head: ['Name', 'Size', 'Size (bytes)', 'Max size'],
+    colWidths: [30, 15, 15, 15],
 });
 
 files
     .filter(file => commander.all || !!file.name)
-    .map(file => [file.name || file.fileName, filesize(file.size)])
+    .map(file => [
+        file.name || file.fileName,
+        filesize(file.size),
+        file.size,
+        file.maxSize === null ? '' : filesize(file.maxSize),
+    ])
     .forEach(row => {
         table.push(row);
     });
 
 console.log(table.toString());
+
+console.log('');
+let limitsExceeded = false;
+files.filter(file => file.maxSize !== null).forEach(file => {
+    if (file.size > file.maxSize) {
+        console.error(
+            `${file.fileName} exceeds limit of ${filesize(
+                file.maxSize,
+            )} by ${filesize(file.size - file.maxSize)}`,
+        );
+        limitsExceeded = true;
+    }
+});
+
+process.exit(limitsExceeded ? 1 : 0);
