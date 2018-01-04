@@ -33,6 +33,11 @@ try {
     process.exit(1);
 }
 
+if (!config.extensions) {
+    console.error('No extensions configured in config file.');
+    process.exit(1);
+}
+
 const files = collectFiles(config, commander.args[0]);
 
 const table = new Table({
